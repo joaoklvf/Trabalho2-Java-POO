@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trab2.beans;
+package dao;
 
 /**
  *
  * @author Joao
  */
-public class Conta {
-    int id, saldo, cliente;
+public class ContaDAO {
+    
 }
