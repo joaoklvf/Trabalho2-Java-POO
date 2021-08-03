@@ -6,6 +6,7 @@
 package trab2;
 
 import dao.ClienteDAO;
+import dao.ContaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,12 +40,27 @@ public class Trab2 {
            Scanner scan = new Scanner(System.in); 
            int op = scan.nextInt();
    
-           if(op==1){
-                cadCliente();
-           }
-           else if(op==2){
-               ClienteDAO.LerClientes();
-           }
+            switch (op) {
+                case 1:
+                    cadCliente();
+                    break;
+                case 2:
+                    ClienteDAO.LerClientes();
+                    break;
+                case 3:
+                    lerCliente();
+                    break;
+                case 4:
+                    cadConta();
+                    break;
+                case 5:
+                    ContaDAO.LerContas();
+                    break;    
+                default:
+                    System.out.println("Foi uma honra ter você consco, até a próxima!");
+                    quitar = true;
+                    break;
+            }
         }
 
     }
@@ -57,6 +73,27 @@ public class Trab2 {
         System.out.println("Insira o cpf do cliente:");
         String cpf = scan.nextLine();
         System.out.println(ClienteDAO.InserirCliente(cpf, nome));
+    }
+    private static void cadConta()
+    {
+        
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("Insira o código do cliente:");
+        int cod = scan.nextInt();
+        System.out.println("Insira o saldo inicial da conta:");
+        int saldo = scan.nextInt();
+        Conta c = new Conta(saldo, cod);
+        if(c.getSaldo() == 0){
+            System.out.println("Cliente não encontrado!");
+            return;
+        }
+        System.out.println(ContaDAO.InserirConta(c));
+    }
+    private static void lerCliente(){
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("Insira o nome do cliente:");
+        int a = scan.nextInt();
+        ClienteDAO.getClienteById(a);
     }
     
 }

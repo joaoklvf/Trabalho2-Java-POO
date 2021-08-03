@@ -14,7 +14,7 @@ import trab2.beans.Conta;
  * @author Joao
  */
 public class ContaDAO {
-    public String InserirConta(Conta conta){
+    public static String InserirConta(Conta conta){
         try{
             Banco.getContas().add(conta);
             return "Conta inserida com sucesso!";
@@ -22,27 +22,27 @@ public class ContaDAO {
             return e.getLocalizedMessage();
         }
     }
-    public void LerContaById(int id){
+    public static void LerContaById(int id){
         List<Conta> contas = Banco.getContas();
         for (Conta c : contas){
             if(c.getId()==id){
                 System.out.println("Código da conta: " + String.valueOf(c.getId()));
-                System.out.println("\nNome do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getNome());
-                System.out.println("\nCPF do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getCpf());
-                System.out.println("\nSaldo da conta: " + String.valueOf(c.getSaldo()) + "\n");
+                System.out.println("Nome do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getNome());
+                System.out.println("CPF do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getCpf());
+                System.out.println("Saldo da conta: " + String.valueOf(c.getSaldo()));
                 return;
             }
         }
         System.out.println("Conta não encontrada!\n");
     }
-        public void LerContas(){
+        public static void LerContas(){
         List<Conta> contas = Banco.getContas();
         for (Conta c : contas){
                 System.out.println("Código da conta: " + String.valueOf(c.getId()));
-                System.out.println("\nNome do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getNome());
-                System.out.println("\nCPF do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getCpf());
-                System.out.println("\nSaldo da conta: " + String.valueOf(c.getSaldo()) + "\n");
+                System.out.println("Nome do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getNome());
+                System.out.println("CPF do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getCpf());
+                System.out.println("Saldo da conta: R$" + String.valueOf(c.getSaldo()));
         }
-        if(contas.isEmpty()) System.out.println("Nenhuma conta cadastrada!\n");
+        if(contas.isEmpty()) System.out.println("Nenhuma conta cadastrada!");
     }
 }

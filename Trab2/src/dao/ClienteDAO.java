@@ -16,7 +16,7 @@ import trab2.beans.Conta;
  */
 public class ClienteDAO {
     public static Cliente getClienteById(int id){
-        Cliente cli = new Cliente();
+        Cliente cli = null;
         for (Cliente c : Banco.getClientes()){
             if(c.getId()==id){
                 cli = c;
