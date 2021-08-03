@@ -7,6 +7,7 @@ package trab2;
 
 import dao.ClienteDAO;
 import dao.ContaDAO;
+import dao.TransferenciaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,6 +38,7 @@ public class Trab2 {
            System.out.println("4) Inserir conta bancária");
            System.out.println("5) Listar contas");
            System.out.println("6) Listar conta pelo código\n");
+           System.out.println("7) PIX\n");
            Scanner scan = new Scanner(System.in); 
            int op = scan.nextInt();
    
@@ -55,7 +57,13 @@ public class Trab2 {
                     break;
                 case 5:
                     ContaDAO.LerContas();
-                    break;    
+                    break;                
+                case 6:
+                    lerConta();
+                    break;  
+                case 7:
+                    PIX();
+                    break;
                 default:
                     System.out.println("Foi uma honra ter você consco, até a próxima!");
                     quitar = true;
@@ -91,9 +99,25 @@ public class Trab2 {
     }
     private static void lerCliente(){
         Scanner scan = new Scanner(System.in); 
-        System.out.println("Insira o nome do cliente:");
+        System.out.println("Insira o código do cliente:");
         int a = scan.nextInt();
         ClienteDAO.getClienteById(a);
+    }
+    private static void lerConta(){
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("Insira o código da conta:");
+        int a = scan.nextInt();
+        ContaDAO.LerContaById(a);
+    }
+    private static void PIX(){
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("Insira o código da conta remetente:");
+        int remetente = scan.nextInt();
+        System.out.println("Insira o código da conta de destino:");
+        int destinatario = scan.nextInt();
+        System.out.println("Insira o valor do pix:");
+        int valor = scan.nextInt();
+        new TransferenciaDAO().PIX(remetente, destinatario, valor);
     }
     
 }
