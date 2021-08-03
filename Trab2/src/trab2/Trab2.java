@@ -5,6 +5,11 @@
  */
 package trab2;
 
+import java.util.ArrayList;
+import java.util.List;
+import trab2.beans.Banco;
+import trab2.beans.Conta;
+
 /**
  *
  * @author Joao
@@ -16,6 +21,8 @@ public class Trab2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+ 
+
     }
     
 }
