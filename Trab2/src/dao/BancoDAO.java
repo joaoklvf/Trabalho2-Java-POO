@@ -15,25 +15,5 @@ import trab2.beans.Conta;
  */
 public class BancoDAO {
     
-    public String InserirConta(Conta conta){
-        try{
-            Banco.getContas().add(conta);
-            return "Conta inserida com sucesso!";
-        }catch(Exception e){
-            return e.getLocalizedMessage();
-        }
-    }
-    public void LerConta(int id){
-        List<Conta> contas = Banco.getContas();
-        for (Conta c : contas){
-            if(c.getId()==id){
-                System.out.println("Código da conta: " + String.valueOf(c.getId()));
-                System.out.println("\nNome do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getNome());
-                System.out.println("\nCPF do cliente: " + ClienteDAO.getClienteById(c.getCliente()).getCpf());
-                System.out.println("\nSaldo da conta: " + String.valueOf(c.getSaldo()) + "\n");
-                return;
-            }
-        }
-        System.out.println("Conta não encontrada!\n");
-    }
+    
 }

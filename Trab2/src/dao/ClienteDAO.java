@@ -5,8 +5,10 @@
  */
 package dao;
 
+import java.util.List;
 import trab2.beans.Banco;
 import trab2.beans.Cliente;
+import trab2.beans.Conta;
 
 /**
  *
@@ -22,7 +24,7 @@ public class ClienteDAO {
         }
         return cli;
     }
-    public String InserirCliente(String cpf, String nome){
+    public static String InserirCliente(String cpf, String nome){
         try{
             Cliente c = new Cliente();
             c.setNome(nome);
@@ -33,5 +35,14 @@ public class ClienteDAO {
         }catch(Exception e){
             return e.getLocalizedMessage();
         }        
+    }
+    public static void LerClientes(){
+        List<Cliente> clientes = Banco.getClientes();
+        for (Cliente c : clientes){
+                System.out.println("Código do cliente: " + String.valueOf(c.getId()));
+                System.out.println("\nNome do cliente: " + (c.getNome()));
+                System.out.println("\nCPF do cliente: " + c.getCpf());
+        }
+        if(clientes.isEmpty()) System.out.println("Nenhum cliente cadastrado!\n");
     }
 }
