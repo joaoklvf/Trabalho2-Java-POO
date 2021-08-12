@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 import trab2.beans.Banco;
 import trab2.beans.Conta;
+import trab2.beans.Transferencia;
 
 /**
  *
@@ -37,8 +38,9 @@ public class Trab2 {
            System.out.println("3) Listar cliente pelo código");
            System.out.println("4) Inserir conta bancária");
            System.out.println("5) Listar contas");
-           System.out.println("6) Listar conta pelo código\n");
-           System.out.println("7) PIX\n");
+           System.out.println("6) Listar conta pelo código");
+           System.out.println("7) PIX");
+           System.out.println("8) Extrato de uma conta");
            Scanner scan = new Scanner(System.in); 
            int op = scan.nextInt();
    
@@ -63,6 +65,9 @@ public class Trab2 {
                     break;  
                 case 7:
                     PIX();
+                    break;
+                case 8:
+                    ExtratoConta();
                     break;
                 default:
                     System.out.println("Foi uma honra ter você consco, até a próxima!");
@@ -101,7 +106,7 @@ public class Trab2 {
         Scanner scan = new Scanner(System.in); 
         System.out.println("Insira o código do cliente:");
         int a = scan.nextInt();
-        ClienteDAO.getClienteById(a);
+        System.out.println(ClienteDAO.getClienteById(a));
     }
     private static void lerConta(){
         Scanner scan = new Scanner(System.in); 
@@ -117,7 +122,17 @@ public class Trab2 {
         int destinatario = scan.nextInt();
         System.out.println("Insira o valor do pix:");
         int valor = scan.nextInt();
-        new TransferenciaDAO().PIX(remetente, destinatario, valor);
+        Transferencia t = new Transferencia();
+        t.setConta1(remetente);
+        t.setConta2(destinatario);
+        t.setValor(valor);
+        System.out.println(new TransferenciaDAO().PIX(t));
+    }
+    private static void ExtratoConta(){
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("Insira o código da conta:");
+        int a = scan.nextInt();
+        System.out.println(TransferenciaDAO.GetExtrato(a));
     }
     
 }
